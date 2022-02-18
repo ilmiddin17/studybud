@@ -1,0 +1,15 @@
+
+
+{%extends 'main/base.html'%}
+{%block content%}
+<div class="contaniner ml-3">
+    <h3>Login</h3>
+
+    <form action="" method="post">
+        {%csrf_token%}
+        {{form.as_p}}
+        <p><input type="submit" value="Login" class="btn btn primary"></p>
+    </form>
+    <p>Forgetten password? Click here to <a href="{%url 'account:password_reset'%}">restore</a></p> 
+</div>
+{%endblock content%}

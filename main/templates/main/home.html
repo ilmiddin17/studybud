@@ -1,0 +1,44 @@
+{%extends 'main/base.html'%}
+<style>
+    .room-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+</style>
+{%block content%}
+<div style="display: grid; grid-template-columns: 1fr 2fr 1fr;">
+    <div>
+        <h3>Browse Topics</h3>
+                {%for topic in topics%}
+            <p>{{topic.name}} ({{topic.room_set.all.count}})</p>
+
+        {%endfor%}
+    </div>
+    <div>
+        <h3 style="display: inline;">Rooms</h3>
+        <h3 style="display: inline-block;margin-left: 60%;"><button type="button" class="btn btn-outline-info">Create</button></h3>
+        <p>{{rooms_count}} rooms available</p>
+    
+        <div class="card">
+            {%for room in rooms%}
+            <div class="card-header">
+                Host  @{{room.host}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{room.name|title}}</h5>
+              <p class="card-text">{{room.topic}}</p>
+              <a href="#" class="btn btn-primary">Join</a>
+            </div>
+            <hr>
+            {%endfor%}
+        </div>
+    </div>
+    <div style="margin-left: 5%;">
+        <h3>Top hosts</h3>
+        {%for host in top_hosts%}
+            <p>{{host.username}}</p>
+        {%endfor%}
+    </div>
+</div>
+
+{%endblock content%}

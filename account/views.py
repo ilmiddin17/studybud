@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -27,3 +27,16 @@ def user_login(request):
 @login_required(login_url='login/')
 def home(request):
     return render(request, 'account/home.html')
+
+
+def user_registration(request):
+    if request.method=='POST':
+        form=RegistrationForm(request.POST)
+        if form.is_valid():
+            new_user=form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'account/register_done.html', {'new_user':new_user})
+    else:
+        form=RegistrationForm()
+    return render(request, 'account/register.html', {'form':form})

@@ -1,12 +1,12 @@
 {%extends 'main/base.html'%}
 {%block content%}
-<div class="position-absolute top-50 start-50 translate-middle">
+<div class="ml-3">
     <h3>Password reset</h3>
-    <p>Enter your new password</p>
+    <p>Enter your email below</p>
     <form action="" method="post">
         {%csrf_token%}
         {{form.as_p}}
-        <input type="submit" value="Reset">
+        <input type="submit" value="Submit">
     </form>
 </div>
 {%endblock content%}

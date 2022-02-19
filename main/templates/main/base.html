@@ -22,6 +22,9 @@
         a.logo {
             text-decoration: none;
         }
+        a.button {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -44,9 +47,9 @@
             </div>
         </div>
         {%else%}
-        <div>
+        <div class="button">
             <button type="button" class="btn btn-outline-success"><a href="{%url 'account:login'%}">Login</a></button>
-            <button type="button" class="btn btn-outline-info"><a href="#">Signup</a></button>
+            <button type="button" class="btn btn-outline-info"><a href="{%url 'account:register'%}">Signup</a></button>
         </div>
         {%endif%}
        </div>

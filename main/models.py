@@ -34,5 +34,5 @@ class Message(models.Model):
         ordering=('-created',)
 
     def __str__(self) -> str:
-        return super(Message).__str__(self.body[:50])
+        return self.body[:50]
 

@@ -1,0 +1,40 @@
+{%extends 'main/base.html'%}
+<style>
+    div.blah {
+       display: grid;
+       grid-template-columns: 3fr 1fr; 
+    }
+</style>
+{%block content%}
+<h4>Back to <a href="{% url 'main:home'%}">home</a></h4>
+<div class="container">
+    <h3>{{room.name}}</h3>
+    <p>{{room.created|timesince}} ago</p>
+    <p>Hosted by {{room.host}}</p>
+    <p>{{count}} participants joined</p>
+</div>
+<hr>
+<h3 class="ml-3">All messages</h3>
+<div class="blah" style="display: grid; grid-template-columns: 3fr 1fr;">
+    <div>
+        {%for msg in messages%}
+        <div class="container">
+            <p>{{msg.user}} {{msg.created|timesince}}</p>
+            <p>{{msg.body}}</p>
+            <hr>
+        </div>
+        {%endfor%}
+        <form action="" method="post">
+            {%csrf_token%}
+            {{msg_form.as_p}}
+            <input type="submit" name="messageCreate" value="Send">
+        </form>
+    </div>
+    <div>
+        <h3>Participants</h3>
+        {%for par in participants%}
+            <p>@{{par.get_username}}</p>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}

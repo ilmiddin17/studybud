@@ -55,6 +55,16 @@
        </div>
     </nav>
     <hr>
+    <div>
+        {%if messeges%}
+            <ul class="messeges">
+                {%for messege in messeges%}
+                    <li>{{messege|safe}}</li>
+                    <a href="#">x</a>
+                {%endfor%}
+            </ul>
+        {%endif%}
+    </div>
     <div class="ml-2">
         {%block content%}
         {%endblock content%}
